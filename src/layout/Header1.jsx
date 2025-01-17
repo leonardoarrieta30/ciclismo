@@ -1,14 +1,19 @@
-import React from 'react';
+import React from "react";
 
 export const Header1 = () => {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
         <div className="container">
-          <a className="navbar-brand fw-bold text-primary" href="#">
-            Mi Proyecto
+          <a className="navbar-brand fw-bold text-warning" href="#">
+            <img
+              src="/images/RimmchallengeSinFondo.png"
+              alt="Rimmchallenge Logo"
+              style={{ maxHeight: "110px" }}
+              className="img-fluid w-50"
+            />
           </a>
-          {/* <button
+          <button
             className="navbar-toggler border-0"
             type="button"
             data-bs-toggle="collapse"
@@ -18,12 +23,12 @@ export const Header1 = () => {
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
-          </button> */}
+          </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <a
-                  className="nav-link text-dark fw-semibold px-3"
+                  className="nav-link text-light fw-semibold px-3"
                   aria-current="page"
                   href="#home"
                 >
@@ -31,13 +36,16 @@ export const Header1 = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-dark fw-semibold px-3" href="#about">
+                <a
+                  className="nav-link text-light fw-semibold px-3"
+                  href="#about"
+                >
                   Sobre Nosotros
                 </a>
               </li>
               <li className="nav-item">
                 <a
-                  className="nav-link text-dark fw-semibold px-3"
+                  className="nav-link text-light fw-semibold px-3"
                   href="#services"
                 >
                   Servicios
@@ -45,7 +53,7 @@ export const Header1 = () => {
               </li>
               <li className="nav-item">
                 <a
-                  className="nav-link text-dark fw-semibold px-3"
+                  className="nav-link text-light fw-semibold px-3"
                   href="#contact"
                 >
                   Contacto

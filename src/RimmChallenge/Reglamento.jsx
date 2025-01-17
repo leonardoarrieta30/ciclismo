@@ -1,15 +1,25 @@
 import React from "react";
 
 export const Reglamento = () => {
+
+
+  const descargarBases = () => {
+    console.log('Descargando bases');
+  }
+
+
+
+
   return (
     <section className="bg-light text-dark py-5" id="rules">
       <div className="container">
-        <h2 className="text-center display-5 fw-bold mb-4">Reglamento</h2>
-        <p className="lead text-center mb-5">
-          Conoce nuestras normas y directrices para garantizar una experiencia segura, inclusiva y emocionante para todos los participantes.
-        </p>
         <div className="row">
-          <div className="col-md-6">
+          <h2 className="text-center display-5 fw-bold mb-4">Reglamento</h2>
+          <p className="lead text-center mb-5">
+            Conoce nuestras normas y directrices para garantizar una experiencia segura, inclusiva y emocionante para todos los participantes.
+          </p>
+
+          {/* <div className="col-md-6">
             <ul className="list-group shadow-sm">
               <li className="list-group-item">
                 <span className="fw-bold text-primary">1.</span> Uso obligatorio de casco y equipo de protección.
@@ -34,13 +44,15 @@ export const Reglamento = () => {
                 <span className="fw-bold text-primary">6.</span> Está prohibido participar bajo los efectos de alcohol o sustancias nocivas.
               </li>
             </ul>
+          </div> */}
+          <div className="text-center" onClick={descargarBases}>
+            <button className="btn btn-primary">
+              Descarga las bases aqui
+            </button>
           </div>
+
         </div>
-        <div className="text-center mt-5">
-          <a href="#contact" className="btn btn-primary btn-lg shadow">
-            Más Información
-          </a>
-        </div>
+
       </div>
     </section>
   );

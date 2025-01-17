@@ -1,10 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Inscripcion = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm({})
 
+  const navigate = useNavigate()
 
   const onSubmit = (data) => {
 
@@ -18,38 +20,11 @@ export const Inscripcion = () => {
           Únete a nuestra comunidad de ciclistas apasionados. Participa en rutas, talleres y eventos diseñados para todos los niveles.
           ¡Es el momento de formar parte de algo increíble!
         </p>
-        <form className="row d-flex justify-content-center mt-4" onSubmit={handleSubmit(onSubmit)}>
-          <div className="col-md-6">
-            <input
-              type="text"
-              className="form-control form-control-lg"
-              placeholder="Nombre completo"
-              {
-                ...register("name", { required: "Para la inscripcion debera completar el campo nombre" })
-              }
-            />
-            {errors.name && <span className="text-danger">{errors.name.message}</span>}
-          </div>
-          <div className="col-md-6">
-            <input
-              type="email"
-              className="form-control form-control-lg"
-              placeholder="Correo electrónico"
-              {
-                ...register("email", { required: "Para la inscripcion debera completar el campo correo" })
-              }
-            />
-            {errors.email && <span className="text-danger">{errors.email.message}</span>}
-          </div>
-          <div className="col-md-4">
-            <button type="submit" className="btn btn-light btn-lg w-100">
-              Enviar Inscripción
-            </button>
-          </div>
-        </form>
-        <p className="mt-4">
-          ¿Tienes dudas? <a href="#contact" className="text-light fw-bold">Contáctanos</a>
-        </p>
+
+        <button className="btn btn-secondary" onClick={()=> navigate("inscripcion-evento")} >
+          Inscribete aqui
+        </button>
+
       </div>
     </section>
   );

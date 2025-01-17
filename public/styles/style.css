@@ -24,3 +24,78 @@
     z-index: 2; /* Asegúrate de que el contenido esté por encima del overlay */
   }
   
+
+
+
+
+
+  /* cards albums */
+
+
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.2s ease;
+    cursor: pointer; /* Cambiar el cursor a "pointer" */
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05); /* Eleva y escala el card al hacer hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Aumenta la sombra al hacer hover */
+    opacity: 0.95; /* Opcional: oscurece un poco el card para dar un efecto de clic */
+}
+
+.card-body {
+    background-color: #f8f9fa; /* Fondo claro para el cuerpo del card */
+}
+
+.card-footer {
+    background-color: #e9ecef; /* Fondo sutil para el pie del card */
+}
+
+.card-title {
+    font-size: 1.2rem;
+    color: #007bff; /* Color azul para el título */
+}
+
+.card-text {
+    color: #495057; /* Color gris oscuro para el texto */
+}
+
+.text-muted {
+    color: #6c757d; /* Gris para el texto más tenue */
+}
+
+.text-success {
+    color: #28a745; /* Verde para el puesto */
+}
+
+.text-primary {
+    color: #007bff; /* Azul para el título */
+}
+
+.clickable-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+
+
+
+
+
+
+
+.scrollable-text {
+  max-height: 200px; /* Ajusta la altura máxima que desees */
+  overflow-y: auto; /* Hace que aparezca un scroll vertical cuando el contenido exceda el tamaño */
+  padding-right: 10px; /* Evita que el texto quede pegado al borde */
+}
+
+
+
+
+
+
+
+
+
