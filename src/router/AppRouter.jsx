@@ -6,9 +6,11 @@ import { Reglamento } from '../RimmChallenge/Reglamento';
 import { Resultados } from '../RimmChallenge/Resultados';
 import { Album } from '../RimmChallenge/Album';
 import { InscripcionEvento } from '../RimmChallenge/formulario/InscripcionEvento';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import { App } from '../App';
 import { Footer } from '../layout/Footer';
+import { Login } from '../RimmChallenge/Login';
+import { LandingAdministrador } from '../RimmChallenge/dinamico/LandingAdministrador';
 
 export const AppRouter = () => {
     console.log('Rendering AppRouter');
@@ -23,6 +25,8 @@ export const AppRouter = () => {
                 <Route path="/reglamento" element={<Reglamento />} />
                 <Route path="/resultados" element={<Resultados />} />
                 <Route path="/album" element={<Album />} />
+                <Route path="/administrador/InicioSesion" element={<Login/> } ></Route>
+                <Route path="/administrador/LandingAdministrador" element={<LandingAdministrador/> } ></Route>
             </Routes>
             <Footer/>
         </BrowserRouter>
