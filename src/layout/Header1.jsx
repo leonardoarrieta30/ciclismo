@@ -48,7 +48,7 @@ export const Header1 = () => {
                   className="nav-link text-light fw-semibold px-3"
                   href="#services"
                 >
-                  Servicios
+                  Inscripcion
                 </a>
               </li>
               <li className="nav-item">
@@ -56,7 +56,15 @@ export const Header1 = () => {
                   className="nav-link text-light fw-semibold px-3"
                   href="#contact"
                 >
-                  Contacto
+                  Resultados
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link text-light fw-semibold px-3"
+                  href="#contact"
+                >
+                  Album
                 </a>
               </li>
             </ul>
