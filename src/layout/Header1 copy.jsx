@@ -13,7 +13,7 @@ export const Header1 = () => {
   }, []);
 
   return (
-    <header className={' bg-dark '}>
+    <header className={`fixed-top ${isScrolled ? 'bg-dark' : 'bg-dark bg-opacity-75'}`}>
       <nav className={`navbar navbar-expand-lg navbar-dark ${isScrolled ? 'py-2' : 'py-3'} transition-all`}>
         <div className="container">
           {/* Logo */}
@@ -21,7 +21,7 @@ export const Header1 = () => {
             <img
               src="/images/rimmchallengelogo.png"
               alt="Rimmchallenge Logo"
-              style={{
+              style={{ 
                 maxHeight: isScrolled ? "90px" : "110px",
                 transition: "max-height 0.3s ease-in-out"
               }}
@@ -90,7 +90,7 @@ export const Header1 = () => {
                   <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
                 </a>
               </li>
-              {/*  <li className="nav-item ms-lg-3">
+             {/*  <li className="nav-item ms-lg-3">
                 <a
                   className="btn btn-warning fw-semibold px-4 mt-3 mt-lg-0"
                   href="#registro"

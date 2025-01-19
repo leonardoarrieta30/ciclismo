@@ -14,7 +14,7 @@ export const resultados = [
         recorrido: 'Ruta 120 km',
         condicionesClimaticas: 'Soleado, 25°C',
         dorsal: 101,
-        imagen: 'https://as01.epimg.net/juegos_olimpicos/imagenes/2021/07/24/noticias/1627112113_280896_1627117441_noticia_normal_recorte1.jpg'
+        imagen: 'https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
         id: 2,
@@ -31,7 +31,7 @@ export const resultados = [
         recorrido: 'Ruta 120 km',
         condicionesClimaticas: 'Soleado, 25°C',
         dorsal: 102,
-        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS6CGgy7Sv9rvw4D2CvKnVcUkN5mEwghfFCg&s'
+        imagen: 'https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
         id: 3,
@@ -48,7 +48,7 @@ export const resultados = [
         recorrido: 'Ruta 120 km',
         condicionesClimaticas: 'Soleado, 25°C',
         dorsal: 103,
-        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2zjPaADvbCl5l7cijpN3wAWdnxMS6IFHyZg&s'
+        imagen: 'https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
         id: 4,
@@ -65,7 +65,7 @@ export const resultados = [
         recorrido: 'Ruta 120 km',
         condicionesClimaticas: 'Soleado, 25°C',
         dorsal: 104,
-        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-SrqjN5sRImBOxIhsTObj5ueKytOXyTiHEw&s'
+        imagen: 'https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
         id: 5,
@@ -82,7 +82,7 @@ export const resultados = [
         recorrido: 'Ruta 120 km',
         condicionesClimaticas: 'Soleado, 25°C',
         dorsal: 105,
-        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgx44hCHooyPXv5Cf1K-G7bp6Ac6wg3190Gg&s'
+        imagen: 'https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
         id: 6,
@@ -99,6 +99,6 @@ export const resultados = [
         recorrido: 'Ruta 120 km',
         condicionesClimaticas: 'Soleado, 25°C',
         dorsal: 106,
-        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBAEIZWWzuP6ECSCOu3VJBrXWwJBY759JgyQ&s'
+        imagen: 'https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     }
 ];

@@ -1,152 +1,239 @@
 import React, { useState } from 'react';
-import { resultados } from './data/resultados';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import { FaMapMarkerAlt, FaCalendarAlt, FaTrophy, FaSearch } from 'react-icons/fa';
+
+// Datos de ejemplo ampliados
+const ciclistas = [
+    {
+        id: 1,
+        nombre: 'Competencia 1',
+        lugar: 'Villa El Salvador, Perú',
+        fecha: '23 Julio 2000',
+        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThdKyk7zo5l1cmGOHw0d0593WYuZ9bm6586A&s',
+        participantes: 150,
+        categoria: 'Profesional',
+        distancia: '80km'
+    },
+    {
+        id: 2,
+        nombre: 'Competencia 2',
+        lugar: 'Pachacámac, Perú',
+        fecha: '30 Agosto 2024',
+        imagen: 'https://media.glamour.mx/photos/61907bbf2d97bd4c522a896c/16:9/w_2784,h_1566,c_limit/211792.jpg',
+        participantes: 200,
+        categoria: 'Amateur',
+        distancia: '50km'
+    },
+    {
+        id: 3,
+        nombre: 'Competencia 3',
+        lugar: 'Arequipa, Perú',
+        fecha: '15 Mayo 2023',
+        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpf7g_bLZcgA-zYxjvyPAZhujrtJBxfV8miw&s',
+        participantes: 300,
+        categoria: 'Elite',
+        distancia: '100km'
+    },
+    {
+        id: 4,
+        nombre: 'Competencia 4',
+        lugar: 'Cusco, Perú',
+        fecha: '12 Octubre 2025',
+        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMTcpyZTUMJZXo5PNfzDAdamn6QFXNSb2cYg&s',
+        participantes: 250,
+        categoria: 'Mixto',
+        distancia: '60km'
+    },
+    {
+        id: 5,
+        nombre: 'Competencia 5',
+        lugar: 'Lima, Perú',
+        fecha: '18 Marzo 2022',
+        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWsq7gN7soHUBI2utWzcs-HMUL5g4HrduBOw&s',
+        participantes: 180,
+        categoria: 'Amateur',
+        distancia: '40km'
+    }
+];
+
+const responsive = {
+    superLargeDesktop: {
+        breakpoint: { max: 4000, min: 1024 },
+        items: 4
+    },
+    desktop: {
+        breakpoint: { max: 1024, min: 768 },
+        items: 3
+    },
+    tablet: {
+        breakpoint: { max: 768, min: 464 },
+        items: 2
+    },
+    mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1
+    }
+};
 
 export const Album = () => {
-    const [openModal, setOpenModal] = useState(false);
-    const [selectedResult, setSelectedResult] = useState(null); // Para almacenar el resultado seleccionado
+    const [modalImage, setModalImage] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('Todas');
 
-    // Función para manejar el clic en un card y abrir el modal con los detalles
-    const handleCardClick = (resultado) => {
-        setSelectedResult(resultado);
-        setOpenModal(true);
-    };
+    const categories = ['Todas', 'Profesional', 'Amateur', 'Elite', 'Mixto'];
+
+    const filteredCiclistas = ciclistas.filter(ciclista => {
+        const matchesSearch = ciclista.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            ciclista.lugar.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesCategory = selectedCategory === 'Todas' || ciclista.categoria === selectedCategory;
+        return matchesSearch && matchesCategory;
+    });
 
     return (
-        <div className="container py-4">
-            <h2 className="text-center mb-4">Resultados</h2>
-            <div className="row g-4">
-                {resultados.map((resultado) => (
-                    <div
-                        key={resultado.id}
-                        className="col-12 col-lg-4 col-md-6 col-sm-12 clickable-card"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                        onClick={() => handleCardClick(resultado)} // Llamamos a la función al hacer clic
-                    >
-                        <div className="card shadow-lg border-0 h-100 rounded-3 overflow-hidden">
-                            {/* Mostrar la imagen dentro de la tarjeta */}
-                            <img
-                                src={resultado.imagen}
-                                alt={resultado.nombre}
-                                className="card-img-top"
-                                style={{ objectFit: 'cover', height: '200px' }}
+        <section className="py-5 bg-dark" id="album">
+            <div className="container">
+                {/* Header Section */}
+                <div className="text-center mb-5">
+                    <h2 className="display-4 fw-bold mb-3 text-light">Álbum de Competencias</h2>
+                    <p className="lead text-muted">
+                        Revive los mejores momentos de nuestras competencias a través del tiempo
+                    </p>
+                </div>
+
+                {/* Search and Filter Section */}
+                <div className="row mb-4">
+                    <div className="col-md-6 mb-3 mb-md-0">
+                        <div className="input-group">
+                            <span className="input-group-text bg-white">
+                                <FaSearch />
+                            </span>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Buscar competencia..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
                             />
-                            <div className="card-body text-center p-4">
-                                <div className="row">
-                                    <div className="col-6">
-                                        <span className='fs-5'>Puesto</span>: <br /> <span className="fw-bold text-success fs-1">{resultado.puesto}</span>
-                                    </div>
-                                    <div className="col-6">
-                                        <h5 className="card-title fw-bold text-primary">
-                                            {resultado.nombre}
-                                        </h5>
-                                        <p className="card-text text-dark mb-2">
-                                            <span className="fw-semibold">País:</span> {resultado.pais}
-                                        </p>
-                                        <p className="card-text text-dark">
-                                            <span className="fw-semibold">Tiempo:</span> {resultado.tiempo} minutos
-                                        </p>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            {/*  <div className="card-footer bg-light text-center py-3">
-                                <small className="text-muted">
-                                    Puesto: <span className="fw-bold text-success">{resultado.puesto}</span>
-                                </small>
-                            </div> */}
                         </div>
                     </div>
-                ))}
-            </div>
-
-            {/* Modal de Bootstrap */}
-            <div
-                className="modal fade"
-                id="exampleModal"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-                style={{ display: openModal ? 'block' : 'none' }} // Mostrar el modal solo cuando se ha seleccionado un ciclista
-            >
-                <div className="modal-dialog modal-dialog-centered modal-xl">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">
-                                Detalles del Ciclista
-                            </h5>
-                            <button
-                                type="button"
-                                className="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                                onClick={() => setOpenModal(false)} // Cerrar el modal
-                            ></button>
-                        </div>
-                        <div className="modal-body">
-                            {selectedResult ? (
-                                <div className="container">
-                                    <div className="row">
-                                        {/* Mostrar la imagen dentro del modal */}
-                                        <div className="col-12 mb-3 text-center">
-                                            <img
-                                                src={selectedResult.imagen}
-                                                alt={selectedResult.nombre}
-                                                className="img-fluid rounded-3"
-                                                style={{ maxHeight: '300px', objectFit: 'cover' }}
-                                            />
-                                        </div>
-                                        {/* Columna 1: Datos en la izquierda */}
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Nombre: <span className='fs-5'>{selectedResult.nombre}</span></h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>País: <span className='fs-5'>{selectedResult.pais}</span></h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Tiempo: <span className='fs-5'>{selectedResult.tiempo}</span> minutos</h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Puesto: <span className='fs-5'>{selectedResult.puesto}</span></h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Categoría: <span className='fs-5'>{selectedResult.categoria}</span></h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Equipo: <span className='fs-5'>{selectedResult.equipo}</span></h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Fecha: <span className='fs-5'>{selectedResult.fecha}</span></h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Competición: <span className='fs-5'>{selectedResult.competicion}</span></h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Recorrido: <span className='fs-5'>{selectedResult.recorrido}</span></h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Condiciones Climáticas: <span className='fs-5'>{selectedResult.condicionesClimaticas}</span></h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Velocidad Promedio: <span className='fs-5'>{selectedResult.promedioVelocidad}</span> km/h</h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Puntos: <span className='fs-5'>{selectedResult.puntos}</span></h5>
-                                        </div>
-                                        <div className="col-md-6 mb-3">
-                                            <h5 className='fs-4'>Dorsal: <span className='fs-5'>{selectedResult.dorsal}</span></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            ) : (
-                                <p>Cargando detalles...</p>
-                            )}
-                        </div>
-
+                    <div className="col-md-6">
+                        <select
+                            className="form-select"
+                            value={selectedCategory}
+                            onChange={(e) => setSelectedCategory(e.target.value)}
+                        >
+                            {categories.map(category => (
+                                <option key={category} value={category}>{category}</option>
+                            ))}
+                        </select>
                     </div>
                 </div>
+
+                {/* Carousel Section */}
+                <Carousel
+                    responsive={responsive}
+                    infinite={true}
+                    autoPlay={true}
+                    autoPlaySpeed={3000}
+                    keyBoardControl={true}
+                    showDots={true}
+                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    itemClass="px-3"
+                    containerClass="pb-5"
+                >
+                    {filteredCiclistas.map(ciclista => (
+                        <div
+                            key={ciclista.id}
+                            className="card h-100 shadow-lg border-0 hover-effect"
+                        >
+                            <div className="position-relative">
+                                <img
+                                    src={ciclista.imagen}
+                                    className="card-img-top cursor-pointer"
+                                    alt={ciclista.nombre}
+                                    style={{ height: '200px', objectFit: 'cover' }}
+                                    onClick={() => setModalImage(ciclista)}
+                                />
+                                <span className="position-absolute top-0 end-0 badge bg-primary m-2">
+                                    {ciclista.categoria}
+                                </span>
+                            </div>
+                            <div className="card-body">
+                                <h5 className="card-title fw-bold mb-3">{ciclista.nombre}</h5>
+                                <div className="d-flex align-items-center mb-2">
+                                    <FaMapMarkerAlt className="text-primary me-2" />
+                                    <span>{ciclista.lugar}</span>
+                                </div>
+                                <div className="d-flex align-items-center mb-2">
+                                    <FaCalendarAlt className="text-primary me-2" />
+                                    <span>{ciclista.fecha}</span>
+                                </div>
+                                <div className="d-flex align-items-center mb-2">
+                                    <FaTrophy className="text-primary me-2" />
+                                    <span>{ciclista.distancia} - {ciclista.participantes} participantes</span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </Carousel>
+
+                {/* Image Modal */}
+                {modalImage && (
+                    <div
+                        className="modal fade show"
+                        style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}
+                        onClick={() => setModalImage(null)}
+                    >
+                        <div className="modal-dialog modal-lg modal-dialog-centered">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title">{modalImage.nombre}</h5>
+                                    <button
+                                        type="button"
+                                        className="btn-close"
+                                        onClick={() => setModalImage(null)}
+                                    ></button>
+                                </div>
+                                <div className="modal-body">
+                                    <img
+                                        src={modalImage.imagen}
+                                        className="img-fluid"
+                                        alt={modalImage.nombre}
+                                    />
+                                    <div className="mt-3">
+                                        <p className="mb-2">
+                                            <strong>Lugar:</strong> {modalImage.lugar}
+                                        </p>
+                                        <p className="mb-2">
+                                            <strong>Fecha:</strong> {modalImage.fecha}
+                                        </p>
+                                        <p className="mb-2">
+                                            <strong>Categoría:</strong> {modalImage.categoria}
+                                        </p>
+                                        <p className="mb-0">
+                                            <strong>Participantes:</strong> {modalImage.participantes}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                <style jsx>{`
+                    .hover-effect {
+                        transition: transform 0.3s ease;
+                    }
+                    .hover-effect:hover {
+                        transform: translateY(-5px);
+                    }
+                    .cursor-pointer {
+                        cursor: pointer;
+                    }
+                `}</style>
             </div>
-        </div>
+        </section>
     );
 };
+

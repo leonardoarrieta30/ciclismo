@@ -4,28 +4,24 @@ import { FaBiking, FaUsers, FaTrophy, FaMapMarkedAlt } from "react-icons/fa";
 export const QuienesSomos = () => {
   const servicios = [
     {
-      icon: <FaBiking className="display-4 text-warning mb-3" />,
+      icon: <FaBiking className="display-4 text-primary mb-3" />,
       title: "Rutas Ciclistas",
-      description:
-        "Organizamos rutas para todos los niveles, desde principiantes hasta expertos, con guías profesionales y soporte técnico."
+      description: "Organizamos rutas para todos los niveles, desde principiantes hasta expertos, con guías profesionales y soporte técnico."
     },
     {
-      icon: <FaUsers className="display-4 text-warning mb-3" />,
+      icon: <FaUsers className="display-4 text-primary mb-3" />,
       title: "Comunidad",
-      description:
-        "Creamos espacios para conectar con otros ciclistas, compartir experiencias y formar amistades duraderas."
+      description: "Creamos espacios para conectar con otros ciclistas, compartir experiencias y formar amistades duraderas."
     },
     {
-      icon: <FaTrophy className="display-4 text-warning mb-3" />,
+      icon: <FaTrophy className="display-4 text-primary mb-3" />,
       title: "Eventos",
-      description:
-        "Competencias, talleres y eventos especiales diseñados para promover el ciclismo y mejorar tus habilidades."
+      description: "Competencias, talleres y eventos especiales diseñados para promover el ciclismo y mejorar tus habilidades."
     },
     {
-      icon: <FaMapMarkedAlt className="display-4 text-warning mb-3" />,
+      icon: <FaMapMarkedAlt className="display-4 text-primary mb-3" />,
       title: "Aventuras",
-      description:
-        "Descubre nuevas rutas y destinos emocionantes con nuestra comunidad ciclista."
+      description: "Descubre nuevas rutas y destinos emocionantes con nuestra comunidad ciclista."
     }
   ];
 
@@ -37,32 +33,29 @@ export const QuienesSomos = () => {
   ];
 
   return (
-    <section className="container py-5" id="quienes-somos">
+    <section className="py-5" id="quienes-somos">
       {/* Hero Section */}
       <div className="container mb-5">
-        <div className="row g-4">
-          <div className="col-12 col-lg-6">
+        <div className="row align-items-center">
+          <div className="col-lg-6">
             <h1 className="display-4 fw-bold mb-4">¿Quiénes Somos?</h1>
-            <p className="lead text-warning fw-bold mb-4">
+            <p className="lead text-primary fw-bold mb-4">
               Somos una empresa promotora de eventos deportivos de ciclismo
             </p>
-            <p className="mb-4 fs-5 text-muted">
-              Con años de experiencia en la organización de rutas, talleres y
-              eventos, hemos creado un espacio donde ciclistas de todos los
-              niveles pueden crecer, aprender y conectar con otros amantes del
-              ciclismo.
+            <p className="mb-4 fs-5">
+              Con años de experiencia en la organización de rutas, talleres y eventos,
+              hemos creado un espacio donde ciclistas de todos los niveles pueden crecer,
+              aprender y conectar con otros amantes del ciclismo.
             </p>
-            <button className="btn btn-warning me-2 py-2">
+            <button className="btn btn-primary btn-lg px-4 me-3">
               Únete a Nosotros
             </button>
-            
-            <button className="btn btn-outline-warning py-2">
+            <button className="btn btn-outline-primary btn-lg px-4">
               Ver Eventos
             </button>
           </div>
-          
-          <div className="col-12 col-lg-6">
-            <div className="p-5 rounded-3 shadow-lg" style={{ backgroundColor: "var(--color-dark)", color: "var(--color-light)" }}>
+          <div className="col-lg-6">
+            <div className="bg-primary text-white p-5 rounded-3 shadow-lg">
               <h3 className="fw-bold mb-4">Nuestro Compromiso</h3>
               <p className="fs-5 mb-4">
                 Nos dedicamos a crear experiencias únicas que combinan:
@@ -79,12 +72,12 @@ export const QuienesSomos = () => {
       </div>
 
       {/* Stats Section */}
-      <div className="py-5 mb-5" style={{ backgroundColor: "var(--color-light)" }}>
+      <div className="bg-light py-5 mb-5">
         <div className="container">
           <div className="row g-4">
             {stats.map((stat, index) => (
               <div key={index} className="col-md-3 text-center">
-                <h2 className="display-4 fw-bold text-warning">{stat.number}</h2>
+                <h2 className="display-4 fw-bold text-primary">{stat.number}</h2>
                 <p className="text-muted">{stat.text}</p>
               </div>
             ))}
@@ -102,7 +95,9 @@ export const QuienesSomos = () => {
                 <div className="card-body text-center p-4">
                   {servicio.icon}
                   <h5 className="card-title mb-3">{servicio.title}</h5>
-                  <p className="card-text text-muted">{servicio.description}</p>
+                  <p className="card-text text-muted">
+                    {servicio.description}
+                  </p>
                 </div>
               </div>
             </div>
@@ -111,19 +106,18 @@ export const QuienesSomos = () => {
       </div>
 
       {/* CTA Section */}
-   {/*    <div className="container mt-5">
-        <div
-          className="p-5 rounded-3 text-center"
-          style={{ backgroundColor: "var(--color-dark)", color: "var(--color-light)" }}
-        >
+      <div className="container mt-5">
+        <div className="bg-primary text-white p-5 rounded-3 text-center">
           <h2 className="fw-bold mb-4">¿Listo para unirte a nuestra comunidad?</h2>
           <p className="fs-5 mb-4">
-            Descubre todo lo que tenemos preparado para ti y tu pasión por el
-            ciclismo
+            Descubre todo lo que tenemos preparado para ti y tu pasión por el ciclismo
           </p>
-          <button className="btn btn-warning btn-lg px-5">Comenzar Ahora</button>
+          <button className="btn btn-light btn-lg px-5">
+            Comenzar Ahora
+          </button>
         </div>
-      </div> */}
+      </div>
     </section>
   );
 };
+

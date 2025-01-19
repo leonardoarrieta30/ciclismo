@@ -4,14 +4,14 @@ import { Inicio } from "./RimmChallenge/Inicio"
 import { QuienesSomos } from "./RimmChallenge/QuienesSomos"
 import { Inscripcion } from "./RimmChallenge/Inscripcion"
 import { Reglamento } from "./RimmChallenge/Reglamento"
+import { Resultado } from "./RimmChallenge/Resultado"
 import { Album } from "./RimmChallenge/Album"
-import { Resultados } from "./RimmChallenge/Resultados"
 import { Footer } from "./layout/Footer"
 
 export const App = () => {
   return (
     
-    <><Inicio /><QuienesSomos /><Inscripcion /><Reglamento /><Album /><Resultados /></>
+    <><Inicio /><QuienesSomos /><Inscripcion /><Reglamento /><Album /><Resultado /></>
   )
 }
 
