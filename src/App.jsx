@@ -7,11 +7,12 @@ import { Reglamento } from "./RimmChallenge/Reglamento"
 import { Resultado } from "./RimmChallenge/Resultado"
 import { Album } from "./RimmChallenge/Album"
 import { Footer } from "./layout/Footer"
+import { Sponsor } from "./RimmChallenge/Sponsor"
 
 export const App = () => {
   return (
     
-    <><Inicio /><QuienesSomos /><Inscripcion /><Reglamento /><Album /><Resultado /></>
+    <><Inicio />{/* <QuienesSomos /> */}<Inscripcion />{/* <Reglamento /> */}<Album /> {/* <Resultado /> */} <Sponsor/></>
   )
 }
 

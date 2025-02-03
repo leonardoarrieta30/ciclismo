@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 export const Header1 = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -8,13 +8,17 @@ export const Header1 = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <header className={' bg-dark '}>
-      <nav className={`navbar navbar-expand-lg navbar-dark ${isScrolled ? 'py-2' : 'py-3'} transition-all`}>
+    <header className="bg-dark">
+      <nav
+        className={`navbar navbar-expand-lg navbar-dark ${
+          isScrolled ? "py-2" : "py-3"
+        } transition-all`}
+      >
         <div className="container">
           {/* Logo */}
           <a className="navbar-brand d-flex align-items-center" href="#">
@@ -23,7 +27,7 @@ export const Header1 = () => {
               alt="Rimmchallenge Logo"
               style={{
                 maxHeight: isScrolled ? "90px" : "110px",
-                transition: "max-height 0.3s ease-in-out"
+                transition: "max-height 0.3s ease-in-out",
               }}
               className="img-fluid w-50"
             />
@@ -130,4 +134,3 @@ export const Header1 = () => {
     </header>
   );
 };
-

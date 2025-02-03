@@ -22,7 +22,7 @@ export const InscripcionEvento = () => {
 
 
     return (
-        <div className='container p-3'>
+        <div className='container py-5'>
             <div className='row'>
                 <h1>IV RALLY VUELTA AL SANTUARIO ECOLOGICO PACHACAMAC 2025</h1>
                 <div className="container">
