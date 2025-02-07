@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { obtenerBannerApi } from "../resources/api/serviciosApi";
+import { useNavigate } from "react-router-dom";
 
 export const Inicio = () => {
   const [imageBase64, setImageBase64] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
+  
   const getImageType = (base64String) => {
     if (!base64String) return "image/jpeg";
 
@@ -95,12 +98,14 @@ export const Inicio = () => {
 
             {/* Botones de acción */}
             <div className="d-flex justify-content-center gap-3 animate-fade-up">
-              <a href="#quienes-somos" className="btn btn-warning col-xl-3">
-                Conócenos
-              </a>
-              <a href="#comunidad" className="btn btn-outline-light col-xl-3">
+              <button
+                className="btn btn-outline-light col-xl-3"
+                onClick={() => {
+                  navigate("/inscripcion-evento");
+                }}
+              >
                 Únete a la Comunidad
-              </a>
+              </button>
             </div>
           </div>
         </div>

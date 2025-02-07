@@ -9,8 +9,8 @@ const images = [
 
 export const Album = () => {
   return (
-    <div className="container-fluid bg-dark py-5">
-      <h2 className="text-center mb-4 fw-bold text-light">
+    <div className="container-fluid my-5" id="album">
+      <h2 className="text-center mb-4 fw-bold text-dark">
         📸 Álbum de Imágenes
       </h2>
       <div className="">

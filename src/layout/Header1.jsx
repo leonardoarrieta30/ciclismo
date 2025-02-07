@@ -58,7 +58,7 @@ export const Header1 = () => {
                   <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a
                   className="nav-link text-light fw-semibold px-3 position-relative"
                   href="#quienes-somos"
@@ -66,13 +66,22 @@ export const Header1 = () => {
                   Sobre Nosotros
                   <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
                 </a>
+              </li> */}
+              <li className="nav-item">
+                <a
+                  className="nav-link text-light fw-semibold px-3 position-relative"
+                  href="#inscripcion"
+                >
+                  Inscripción
+                  <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
+                </a>
               </li>
               <li className="nav-item">
                 <a
                   className="nav-link text-light fw-semibold px-3 position-relative"
-                  href="#comunidad"
+                  href="#noticias"
                 >
-                  Inscripción
+                  Noticias
                   <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
                 </a>
               </li>
@@ -94,6 +103,7 @@ export const Header1 = () => {
                   <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
                 </a>
               </li>
+              
               {/*  <li className="nav-item ms-lg-3">
                 <a
                   className="btn btn-warning fw-semibold px-4 mt-3 mt-lg-0"

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { login } from "../security/login";
 import Swal from "sweetalert2";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export const Login = () => {
   const {
@@ -11,6 +12,11 @@ export const Login = () => {
     formState: { errors },
   } = useForm({});
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const onSubmit = async (data) => {
     const dataPost = {
@@ -19,7 +25,7 @@ export const Login = () => {
     };
 
     const res = await login(dataPost);
-    if (res.status == 1) {
+    if (res.status === 1) {
       Swal.fire({
         icon: "success",
         title: res.message,
@@ -27,25 +33,11 @@ export const Login = () => {
       }).then(() => {
         navigate("/administrador/interfaz/insertarAlbum");
       });
-    } else if (res.status == 0) {
-      Swal.fire({
-        icon: "error",
-        title: res.message,
-        text: "Por favor, verifica tus credenciales.",
-        confirmButtonText: "Aceptar",
-      });
-    } else if (res.status == 2) {
-      Swal.fire({
-        icon: "error",
-        title: res.message,
-        text: "Por favor, verifica tus credenciales.",
-        confirmButtonText: "Aceptar",
-      });
     } else {
       Swal.fire({
         icon: "error",
         title: res.message,
-        text: "Por favor, comuniquese con sistemas",
+        text: "Por favor, verifica tus credenciales.",
         confirmButtonText: "Aceptar",
       });
     }
@@ -70,24 +62,33 @@ export const Login = () => {
               })}
             />
             {errors.username && (
-              <span className="text-danger">{errors.username.message} </span>
+              <span className="text-danger">{errors.username.message}</span>
             )}
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">
               Contraseña
             </label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Ingresa tu contraseña"
-              {...register("password", {
-                required: "La contraseña es requerida",
-              })}
-            />
+            <div className="input-group">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="form-control"
+                id="password"
+                placeholder="Ingresa tu contraseña"
+                {...register("password", {
+                  required: "La contraseña es requerida",
+                })}
+              />
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
             {errors.password && (
-              <span className="text-danger">{errors.password.message} </span>
+              <span className="text-danger">{errors.password.message}</span>
             )}
           </div>
           <button type="submit" className="btn btn-primary w-100">

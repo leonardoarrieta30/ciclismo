@@ -15,6 +15,8 @@ import { InsertarAlbum } from '../RimmChallenge/dinamico/Web/InsertarAlbum';
 import { SideBar } from '../RimmChallenge/dinamico/Sidebar';
 import { InsertarBanner } from '../RimmChallenge/dinamico/Web/InsertarBanner';
 import { Sponsor } from '../RimmChallenge/Sponsor';
+import { Noticias } from '../RimmChallenge/Noticias';
+import { MasNoticias } from '../RimmChallenge/MasNoticias';
 
 export const AppRouter = () => {
   const location = useLocation();
@@ -35,6 +37,8 @@ export const AppRouter = () => {
         <Route path="/reglamento" element={<Reglamento />} />
         <Route path="/resultados" element={<Resultado />} />
         <Route path="/album" element={<Album />} />
+        <Route path="/noticias" element={<Noticias />} />
+        <Route path="/mas-noticias" element={<MasNoticias />} />
         <Route path="/sponsors" element={<Sponsor />} />
         <Route path="/administrador/InicioSesion" element={<Login />} />
 

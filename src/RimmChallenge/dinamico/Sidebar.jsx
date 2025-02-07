@@ -9,8 +9,8 @@ import { MdPhotoLibrary } from "react-icons/md";
 
 import { AnimatePresence, motion } from "framer-motion";
 const sidebarData = [
-    { path: "/administrador/interfaz/insertarAlbum", name: "Album", icon: <IoIosAlbums   /> },
     { path: "/administrador/interfaz/banner", name: "Banner", icon: <MdPhotoLibrary  /> },
+    { path: "/administrador/interfaz/insertarAlbum", name: "Album", icon: <IoIosAlbums   /> },
     { path: "/", name: "Logout", icon: <RiLogoutBoxLine /> },
 ];
 

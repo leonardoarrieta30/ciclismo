@@ -53,9 +53,9 @@ export const Inscripcion = () => {
   };
 
   return (
-    <div className="container my-5">
-      {/* Hero Section */}
-      <section className=" text-dark" id="comunidad">
+    <div className="container my-5" id="inscripcion">
+  
+
         <div className="container text-center">
           <div className="row">
             <div className="col-12">
@@ -70,10 +70,9 @@ export const Inscripcion = () => {
             </div>
           </div>
         </div>
-      </section>
+    
 
-      {/* CTA Section */}
-      <section className="text-dark">
+    
         <div className="container text-center">
           <div className="row">
             <div className="col-12 col-xl-6 col-lg-6 col-md-12 mb-3 ">
@@ -104,7 +103,7 @@ export const Inscripcion = () => {
             </div>
           </div>
         </div>
-      </section>
+
 
       {/* Testimonials Section */}
       {/* <section className="py-5 text-dark">

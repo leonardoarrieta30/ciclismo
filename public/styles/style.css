@@ -230,7 +230,7 @@
 
 
 /* 
-SUBIDA DE IMAGENES
+SUBIDA DE IMAGENES(ALBUM)
 */
 
 /* Estilos para el área de arrastre */
@@ -307,4 +307,107 @@ SUBIDA DE IMAGENES
 
 
 
+  .masonry-grid {
+    display: flex;
+    margin-left: -15px; /* Ajuste de espaciado */
+    width: auto;
+  }
+  
+  .masonry-column {
+    padding-left: 15px;
+    background-clip: padding-box;
+  }
+  
+  .card {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px; /* Espaciado entre tarjetas */
+    border: 1px solid #ddd; 
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 15px;
+    background-color: white;
+    text-align: center;
+  }
+  
 
+
+  .card {
+    transition: none !important; /* Elimina cualquier animación */
+    box-shadow: none !important; /* Evita sombras extra al pasar el mouse */
+
+  }
+  
+  .card:hover {
+    transform: none !important; /* Evita que el card se agrande */
+    box-shadow: none !important; /* Evita sombras en hover */
+    cursor: default;
+  }
+  
+
+
+
+
+
+
+
+
+
+/* fotos noticias */
+  .hover-shadow {
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .hover-shadow:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .card-img-container {
+    overflow: hidden;
+  }
+  
+  .card1:hover .card-img-top {
+    transform: scale(1.05);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
