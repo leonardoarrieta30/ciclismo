@@ -42,7 +42,6 @@ export const Inscripcion = () => {
     },
   ];
 
-
   const descargarCalendario = () => {
     const link = document.createElement("a");
     link.href = "/images/calendario/CALENDARIO 2025.jpg"; // Ruta relativa en `public`
@@ -51,59 +50,101 @@ export const Inscripcion = () => {
     link.click();
     document.body.removeChild(link);
   };
+  
 
   return (
     <div className="container my-5" id="inscripcion">
-  
-
-        <div className="container text-center">
-          <div className="row">
-            <div className="col-12">
-              <h1 className="fw-bold mb-4">
-                ¡Únete a la Mejor Comunidad Ciclista!
-              </h1>
-              <p className="fs-5 mb-5">
-                Descubre un mundo de aventuras, conocimiento y pasión por el
-                ciclismo. Forma parte de una comunidad que comparte tu misma
-                pasión.
-              </p>
-            </div>
+      <div className="container text-center">
+        <div className="row">
+          <div className="col-12">
+            <h1 className="fw-bold mb-4">
+              ¡Únete a la Mejor Comunidad Ciclista!
+            </h1>
+            <p className="fs-5 mb-5">
+              Descubre un mundo de aventuras, conocimiento y pasión por el
+              ciclismo. Forma parte de una comunidad que comparte tu misma
+              pasión.
+            </p>
           </div>
         </div>
-    
+      </div>
 
-    
-        <div className="container text-center">
-          <div className="row">
-            <div className="col-12 col-xl-6 col-lg-6 col-md-12 mb-3 ">
-              <h2 >Calendario 2025</h2>              
-              <span className="lead text-muted">
-                Enterate de eventos de Rimm Challenge este 2025
-              </span>
-              <br />
+      <div className="container text-center">
+        <div className="row">
+          <div className="col-12 col-xl-6 col-lg-6 col-md-12 mb-3 ">
+            <h2>Calendario 2025</h2>
+            <span className="lead text-muted">
+              Enterate de eventos de Rimm Challenge este 2025
+            </span>
+            <br />
+            <div className="d-flex justify-content-center">
               <button
-                className="btn btn-warning text-dark mt-3"
-                onClick={() => descargarCalendario()}
+                onClick={descargarCalendario}
+                className="mt-3"
+                style={{
+                  backgroundColor: "#212529", // Negro moderno
+                  color: "white",
+                  padding: "10px 20px",
+                  border: "none",
+                  borderRadius: "8px", // Bordes redondeados
+                  cursor: "pointer",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  transition: "all 0.3s ease",
+                  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)", // Sombra sutil
+                }}
+                onMouseOver={(e) =>
+                  (e.target.style.backgroundColor = "#343a40")
+                } // Cambio de color en hover
+                onMouseOut={(e) => (e.target.style.backgroundColor = "#212529")}
+                onMouseDown={(e) => (e.target.style.transform = "scale(0.95)")} // Efecto de presión
+                onMouseUp={(e) => (e.target.style.transform = "scale(1)")}
               >
                 Descargar Calendario
               </button>
             </div>
-            <div className="col-12 col-xl-6 col-lg-6 col-md-12">
-              <h2 >¿Listo para comenzar tu aventura?</h2>
-              <span className="lead mb-3">
-                Únete hoy y obtén acceso a tu primer evento gratuito
-              </span>
-              <br />
+          </div>
+          <div className="col-12 col-xl-6 col-lg-6 col-md-12">
+            <h2>¿Listo para comenzar tu aventura?</h2>
+            <span className="lead mb-3">
+              Únete hoy y obtén acceso a tu primer evento gratuito
+            </span>
+            <br />
+            <div className="d-flex justify-content-center">
               <button
-                className="btn btn-warning text-dark mt-3"
                 onClick={() => navigate("inscripcion-evento")}
+                className="mt-3"
+                style={{
+                  backgroundColor: "#212529", // Negro moderno
+                  color: "white",
+                  padding: "10px 20px",
+                  border: "none",
+                  borderRadius: "8px", // Bordes redondeados
+                  cursor: "pointer",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  transition: "all 0.3s ease",
+                  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)", // Sombra sutil
+                }}
+                onMouseOver={(e) =>
+                  (e.target.style.backgroundColor = "#343a40")
+                } // Cambio de color en hover
+                onMouseOut={(e) => (e.target.style.backgroundColor = "#212529")}
+                onMouseDown={(e) => (e.target.style.transform = "scale(0.95)")} // Efecto de presión
+                onMouseUp={(e) => (e.target.style.transform = "scale(1)")}
               >
                 ¡Inscríbete Ahora!
               </button>
             </div>
           </div>
         </div>
-
+      </div>
 
       {/* Testimonials Section */}
       {/* <section className="py-5 text-dark">
@@ -155,7 +196,7 @@ export const Inscripcion = () => {
       </section> */}
 
       {/* Planes Section */}
-     {/*  <section className="py-4">
+      <section className="py-4">
         <div className="container">
           <h2 className="text-center mb-3">Pagos</h2>
           <div className="row justify-content-center">
@@ -203,7 +244,7 @@ export const Inscripcion = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
     </div>
   );
 };

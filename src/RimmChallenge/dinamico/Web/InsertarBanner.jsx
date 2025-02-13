@@ -52,9 +52,7 @@ export const InsertarBanner = () => {
   };
 
   const onSubmit = async () => {
-
     if (imageFile) {
-
       const { nombreArchivo, base64Value } = await convertToBase64(imageFile);
       // Aquí puedes enviar nombreArchivo y base64Value a tu API
       const commaIndex = base64Value.indexOf(",");
@@ -69,15 +67,13 @@ export const InsertarBanner = () => {
 
       const respuesta = await subirBanner(dataPost);
 
-      
-
       if (respuesta.status == 1) {
         Swal.fire({
           title: "Imagen subida correctamente",
           text: respuesta.message,
           icon: "success",
         });
-      } else {
+      } else if (respuesta.status == -1) {
         Swal.fire({
           title: "Error al subir imagen",
           text: "Hubo un error al subir la imagen al servidor",

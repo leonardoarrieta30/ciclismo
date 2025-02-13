@@ -82,7 +82,6 @@ export const MasNoticias = () => {
             <div className="card-body">
               <h5 className="card-title text-primary">{noticia.titulo}</h5>
               <p className="card-text">{noticia.descripcionTotal}</p>
-              <button className="btn btn-outline-secondary">Leer más</button>
             </div>
           </div>
         ))}

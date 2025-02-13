@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Header1 = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation(); // Obtiene la ruta actual
 
-  // Efecto para detectar el scroll
+  // Detectar el scroll para ajustar la apariencia del navbar
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -12,135 +15,113 @@ export const Header1 = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Función para hacer scroll suave a una sección
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      const navbarHeight = document.querySelector("nav")?.offsetHeight || 0;
+      const sectionPosition = section.offsetTop - navbarHeight - 10;
+      window.scrollTo({
+        top: sectionPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // Función que decide si hacer scroll o navegar
+  const handleNavigation = (pathOrId) => {
+    if (location.pathname === "/" && document.getElementById(pathOrId)) {
+      scrollToSection(pathOrId); // Si está en la página principal, hace scroll
+    } else {
+      navigate(pathOrId); // Si está en otra página, usa navigate
+    }
+  };
+
   return (
-    <header className="bg-dark">
+    <header
+      style={{
+        backgroundColor: "#FFFFFF",
+        transition: "background-color 0.3s ease-in-out",
+        boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
+      }}
+    >
       <nav
         className={`navbar navbar-expand-lg navbar-dark ${
-          isScrolled ? "py-2" : "py-3"
+          isScrolled ? "py-2 shadow-sm" : "py-3"
         } transition-all`}
       >
         <div className="container">
-          {/* Logo */}
-          <a className="navbar-brand d-flex align-items-center" href="#">
+          <a className="navbar-brand d-flex align-items-center" href="/">
             <img
               src="/images/rimmchallengelogo.png"
               alt="Rimmchallenge Logo"
               style={{
-                maxHeight: isScrolled ? "90px" : "110px",
+                maxHeight: isScrolled ? "80px" : "100px",
                 transition: "max-height 0.3s ease-in-out",
               }}
               className="img-fluid w-50"
             />
           </a>
 
-          {/* Botón hamburguesa con animación */}
           <button
             className="navbar-toggler border-0 p-0"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span
+              className="navbar-toggler-icon"
+              style={{ filter: "invert(1)" }}
+            ></span>
           </button>
 
-          {/* Menú de navegación */}
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a
-                  className="nav-link text-light fw-semibold px-3 position-relative"
-                  href="/"
+                <button
+                  className="nav-link fw-semibold px-3 border-0 bg-transparent text-dark"
+                  onClick={() => handleNavigation("inscripcion")}
                 >
-                  Inicio
-                  <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
-                </a>
-              </li>
-              {/* <li className="nav-item">
-                <a
-                  className="nav-link text-light fw-semibold px-3 position-relative"
-                  href="#quienes-somos"
-                >
-                  Sobre Nosotros
-                  <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
-                </a>
-              </li> */}
-              <li className="nav-item">
-                <a
-                  className="nav-link text-light fw-semibold px-3 position-relative"
-                  href="#inscripcion"
-                >
-                  Inscripción
-                  <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
-                </a>
+                  Inscripciones
+                </button>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link text-light fw-semibold px-3 position-relative"
-                  href="#noticias"
+                <button
+                  className="nav-link fw-semibold px-3 border-0 bg-transparent text-dark"
+                  onClick={() => navigate("/reglamento")}
+                >
+                  Reglamento
+                </button>
+              </li>
+              <li className="nav-item">
+                <button
+                  className="nav-link fw-semibold px-3 border-0 bg-transparent text-dark"
+                  onClick={() => handleNavigation("noticias")}
                 >
                   Noticias
-                  <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
-                </a>
+                </button>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link text-light fw-semibold px-3 position-relative"
-                  href="#resultados"
-                >
-                  Resultados
-                  <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link text-light fw-semibold px-3 position-relative"
-                  href="#album"
+                <button
+                  className="nav-link fw-semibold px-3 border-0 bg-transparent text-dark"
+                  onClick={() => handleNavigation("album")}
                 >
                   Álbum
-                  <span className="position-absolute bottom-0 start-50 translate-middle-x border-bottom border-2 border-warning w-0 transition-width d-none d-lg-block"></span>
-                </a>
+                </button>
               </li>
-              
-              {/*  <li className="nav-item ms-lg-3">
-                <a
-                  className="btn btn-warning fw-semibold px-4 mt-3 mt-lg-0"
-                  href="#registro"
+              <li className="nav-item">
+                <button
+                  className="nav-link fw-semibold px-3 border-0 bg-transparent text-dark"
+                  onClick={() => handleNavigation("clasificaciones")}
                 >
-                  Registrarse
-                </a>
-              </li> */}
+                  Clasificaciones
+                </button>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
-
-      {/* Estilos personalizados */}
-      <style>
-        {`
-          .transition-all {
-            transition: all 0.3s ease-in-out;
-          }
-          
-          .transition-width {
-            width: 0;
-            transition: width 0.3s ease-in-out;
-          }
-          
-          .nav-link:hover .border-bottom {
-            width: 80% !important;
-          }
-          
-          @media (min-width: 992px) {
-            .navbar-nav .nav-link {
-              padding-top: 1rem !important;
-              padding-bottom: 1rem !important;
-            }
-          }
-        `}
-      </style>
     </header>
   );
 };

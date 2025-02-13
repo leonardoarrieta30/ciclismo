@@ -8,7 +8,6 @@ export const Inicio = () => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  
   const getImageType = (base64String) => {
     if (!base64String) return "image/jpeg";
 
@@ -63,14 +62,24 @@ export const Inicio = () => {
           <div className="col-lg-8 mx-auto text-center">
             {/* Encabezado animado */}
             <div className="mb-4 animate-fade-down">
-              <span className="text-warning text-uppercase fw-bold letter-spacing-3">
-                Rimmchallenge 2025
+              <span
+                className="text-uppercase fw-bold letter-spacing-3"
+                style={{
+                  color: "#000000",
+                  fontSize: "24px",
+                  textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Sombra
+                  backgroundColor: "#2990C3", // Fondo
+                  padding: "5px 10px", // Espaciado interno
+                  borderRadius: "5px", // Bordes redondeados
+                }}
+              >
+                Rimmchallenge
               </span>
             </div>
 
             <h1 className="display-3 fw-bold mb-4 animate-fade-up">
-              ¡Descubre el Mundo del{" "}
-              <span className="text-warning position-relative">
+              Descubre el Mundo del{" "}
+              <span className=" position-relative">
                 Ciclismo
                 <svg
                   className="position-absolute start-0 bottom-0"
@@ -79,7 +88,7 @@ export const Inicio = () => {
                 >
                   <path
                     d="M0,5 Q50,0 100,5"
-                    stroke="#ffc107"
+                    stroke="#2990C3"
                     strokeWidth="3"
                     fill="none"
                   />
@@ -99,7 +108,7 @@ export const Inicio = () => {
             {/* Botones de acción */}
             <div className="d-flex justify-content-center gap-3 animate-fade-up">
               <button
-                className="btn btn-outline-light col-xl-3"
+                className="btn btn-outline-info col-xl-3"
                 onClick={() => {
                   navigate("/inscripcion-evento");
                 }}

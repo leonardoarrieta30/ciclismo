@@ -11,7 +11,7 @@ export const Reglamento = () => {
 
 
   return (
-    <section className="text-dark py-5" id="rules">
+    <div className="d-flex min-vh-100 container py-5">
       <div className="container">
         <div className="row">
           <h2 className="text-center display-5 fw-bold mb-4">Reglamento</h2>
@@ -27,7 +27,7 @@ export const Reglamento = () => {
         </div>
 
       </div>
-    </section>
+    </div>
   );
 };
 

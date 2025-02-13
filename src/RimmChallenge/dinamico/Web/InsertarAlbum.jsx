@@ -1,25 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { insertarAlbum } from "../../../resources/api/serviciosApi";
+import { createorUpdateEnlace, insertarAlbum } from "../../../resources/api/serviciosApi";
 
 export const InsertarAlbum = () => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-    reset
-  } = useForm({
-    mode: "onChange",
-  });
-
+  const { handleSubmit, reset } = useForm();
   const [imagenes, setImagenes] = useState([]);
   const [cargando, setCargando] = useState(false);
-  const [mensaje, setMensaje] = useState("");
+  const [imagenURL, setImagenURL] = useState(""); // Estado para la URL de la imagen
   const fileInputRef = useRef(null);
   const MAX_IMAGENES = 5;
   const usuarioId = 1;
+  const [error, setError] = useState("");
 
   const handleDrop = async (e) => {
     e.preventDefault();
@@ -38,10 +30,10 @@ export const InsertarAlbum = () => {
 
     setCargando(true);
     const nuevasImagenes = await Promise.all(
-      archivos.map(async (archivo) => {
-        const base64 = await convertirABase64(archivo);
-        return { base64 };
-      })
+      archivos.map(async (archivo) => ({
+        base64: await convertirABase64(archivo),
+        nombre: archivo.name,
+      }))
     );
 
     setImagenes((prevImagenes) => [...prevImagenes, ...nuevasImagenes]);
@@ -63,10 +55,10 @@ export const InsertarAlbum = () => {
 
     setCargando(true);
     const nuevasImagenes = await Promise.all(
-      archivos.map(async (archivo) => {
-        const base64 = await convertirABase64(archivo);
-        return { base64 };
-      })
+      archivos.map(async (archivo) => ({
+        base64: await convertirABase64(archivo),
+        nombre: archivo.name,
+      }))
     );
 
     setImagenes((prevImagenes) => [...prevImagenes, ...nuevasImagenes]);
@@ -77,10 +69,7 @@ export const InsertarAlbum = () => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = () => {
-        const base64String = reader.result.split(",")[1];
-        resolve(base64String);
-      };
+      reader.onload = () => resolve(reader.result); // Mantenemos la estructura completa
       reader.onerror = (error) => reject(error);
     });
   };
@@ -96,40 +85,55 @@ export const InsertarAlbum = () => {
     fileInputRef.current.click();
   };
 
-  const onSubmit = async (data) => {
-  
-    setMensaje("");
+  const eliminarImagen = (index) => {
+    setImagenes((prevImagenes) => prevImagenes.filter((_, i) => i !== index));
+  };
 
-      imagenes.map(async (img, index) => {
-        const datosImagen = {
-          lugar: data.lugar[index],
-          descripcion: data.descripcion[index],
-          fecha: data.fecha[index],
-          foto: img.base64,
-          usuarioId,
-        };
+  const agregarImagenDesdeURL = async () => {
+    if (!imagenURL.trim()) {
+      setError("Por favor, ingresa un enlace válido.");
+      return;
+    }
 
-        const respuesta = await insertarAlbum(datosImagen);
+    setError("");
+    const dataPost = {
+      url: imagenURL,
+      usuarioId: 1,
+    };
+    const response = await createorUpdateEnlace(dataPost);
+    if (response.status === 1) {
+      Swal.fire({
+        title: response["message"],
+        icon: "success",
+      });
+    } else {
+      Swal.fire({
+        title: response["message"],
+        icon: "error",
+      });
+    }
+  };
 
-        if (respuesta.status == 1) {
-          Swal.fire({
-            title: respuesta.message,
-            //text: respuesta.message,
-            icon: "success",
-          });
-          reset();
-        } else {
-          Swal.fire({
-            title: respuesta.message,
-            //text: respuesta.message,
-            icon: "error",
-          });
-        }
+  const onSubmit = async () => {
+    for (const img of imagenes) {
+      const datosImagen = { foto: img.base64, usuarioId };
+      const respuesta = await insertarAlbum(datosImagen);
+
+      Swal.fire({
+        title: respuesta.message,
+        icon: respuesta?.status === 1 ? "success" : "error",
       });
 
+      if (respuesta.status == -1) {
+        Swal.fire({
+          title: "Error del servidor",
+          icon: "error",
+        });
+      }
 
-      setImagenes([]);
-
+      if (respuesta.status === 1) reset();
+    }
+    setImagenes([]);
   };
 
   return (
@@ -140,16 +144,12 @@ export const InsertarAlbum = () => {
 
         <form className="mt-3" onSubmit={handleSubmit(onSubmit)}>
           <div
-            className={`col-12 mt-3 area-arrastre ${
-              cargando ? "cargando" : ""
-            }`}
+            className={`col-12 mt-3 area-arrastre ${cargando ? "cargando" : ""}`}
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
             onClick={handleClickAreaArrastre}
           >
-            <p>
-              Arrastra tus imágenes aquí o haz clic para seleccionar archivos
-            </p>
+            <p>Arrastra tus imágenes aquí o haz clic para seleccionar archivos</p>
             <p>(Máximo {MAX_IMAGENES} imágenes)</p>
           </div>
 
@@ -162,68 +162,32 @@ export const InsertarAlbum = () => {
             onChange={handleFileInputChange}
           />
 
+          {/* Campo para ingresar un enlace de imagen */}
+          <div className="col-12 mt-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Ingresa el enlace del album..."
+              value={imagenURL}
+              onChange={(e) => setImagenURL(e.target.value)}
+            />
+            {error && <div className="text-danger mt-1">{error}</div>}
+            <button type="button" className="btn btn-success mt-2" onClick={agregarImagenDesdeURL}>
+              Guardar Enlace
+            </button>
+          </div>
+
           <div className="col-12 mt-3">
             {cargando && <div className="loader"></div>}
-            {mensaje && <div className="alert alert-success">{mensaje}</div>}
 
-            <h5>
-              Imágenes seleccionadas ({imagenes.length}/{MAX_IMAGENES}):
-            </h5>
-            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+            <h5>Imágenes seleccionadas ({imagenes.length}/{MAX_IMAGENES}):</h5>
+            <div className="imagenes-grid">
               {imagenes.map((img, index) => (
-                <div key={index} className="image-container text-center">
-                  <img
-                    src={`data:image/png;base64,${img.base64}`}
-                    alt={`imagen-${index}`}
-                    className="imagen-previa"
-                  />
-                  <div className="form-group mt-2 text-start">
-                    <label>Lugar:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      {...register(`lugar.${index}`, {
-                        required: "Este campo es obligatorio",
-                      })}
-                    />
-                    {errors.lugar?.[index] && (
-                      <span className="text-danger">
-                        {errors.lugar[index].message}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="form-group mt-2 text-start">
-                    <label>Descripción:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      {...register(`descripcion.${index}`, {
-                        required: "Este campo es obligatorio",
-                      })}
-                    />
-                    {errors.descripcion?.[index] && (
-                      <span className="text-danger">
-                        {errors.descripcion[index].message}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="form-group mt-2 text-start">
-                    <label>Fecha:</label>
-                    <input
-                      type="date"
-                      className="form-control"
-                      {...register(`fecha.${index}`, {
-                        required: "Este campo es obligatorio",
-                      })}
-                    />
-                    {errors.fecha?.[index] && (
-                      <span className="text-danger">
-                        {errors.fecha[index].message}
-                      </span>
-                    )}
-                  </div>
+                <div key={index} className="image-container">
+                  <img src={img.base64} alt={`imagen-${index}`} className="imagen-previa" />
+                  <button className="btn-eliminar" onClick={() => eliminarImagen(index)}>
+                    X
+                  </button>
                 </div>
               ))}
             </div>
